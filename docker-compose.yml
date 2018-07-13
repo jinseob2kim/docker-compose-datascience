@@ -1,0 +1,17 @@
+nginx:
+  container_name: nginx
+  image: nginx:latest
+  volumes:
+   - ./default:/etc/nginx/sites-enabled/default
+  ports:
+   - "80:80"
+
+
+shiny:
+  container_name: shiny
+  image: rocker/shiny
+  environment:
+   - VIRTUAL_NETWORK=nginx
+   - VIRTUAL_PORT=80
+  ports:
+   - "3838:3838"
